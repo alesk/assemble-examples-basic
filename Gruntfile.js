@@ -20,18 +20,28 @@ module.exports = function(grunt) {
         assets: 'dist/assets',
         layout: 'src/templates/layouts/default.hbs',
         partials: [
-          'src/templates/partials/*.hbs'
+          'src/templates/partials/*.hbs',
+          'src/content/*.hbs',
         ],
         data: 'src/data/*.{json,yml}'
       },
       posts: {
         options: {
-          ext: '.html',
           flatten: false,
           layout: 'src/templates/layouts/post.hbs'
         },
         files: [ 
-          { expand: true, cwd: 'src', src: ['posts/*.md.hbs'], dest: 'dist/' }
+          { expand: true, cwd: 'src', src: ['posts/*.hbs', '!**/*.md.hbs'], dest: 'dist/' }
+        ]
+      },
+      markdown_posts: {
+        options: {
+          ext: '',
+          flatten: false,
+          layout: 'src/templates/layouts/post.md.hbs'
+        },
+        files: [ 
+          { expand: true, cwd: 'src/posts', src: ['*.md.hbs'], dest: 'dist/markdown' }
         ]
       },
       pages: {
@@ -46,7 +56,7 @@ module.exports = function(grunt) {
     // remove any previously-created files.
     clean: {
       dest: {
-        pages: ['dist/*.html', 'index.html']
+        pages: ['dist/**/*.{html,md}', 'index.html']
       }
     }
   });
@@ -56,6 +66,6 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-clean');
 
   // Default task to be run.
-  grunt.registerTask('default', ['clean', 'assemble:posts', 'assemble:pages']);
+  grunt.registerTask('default', ['clean', 'assemble']);
 
 };
