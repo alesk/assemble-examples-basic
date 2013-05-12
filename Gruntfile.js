@@ -26,12 +26,13 @@ module.exports = function(grunt) {
       },
       posts: {
         options: {
+          ext: '',
           flatten: false,
           layout: 'src/templates/layouts/post.hbs'
         },
-        files: {
-          'dist/': ['src/posts/*.md']
-        }
+        files: [ 
+          { expand: true, cwd: 'src', src: ['posts/*.md.hbs'], dest: 'dist/' }
+        ]
       },
       pages: {
         files: {
