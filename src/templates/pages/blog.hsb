@@ -9,6 +9,4 @@ posts: ['src/posts/2013_05_10', 'src/posts/2013_05_12']
 
 <h1>This is a simple blog</h1>
 
-{{#each posts}}
-<h2>{{this}}</h2>
-{{/each}}
+{{md 'dist/posts/*.md'}}

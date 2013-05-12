@@ -56,6 +56,6 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-clean');
 
   // Default task to be run.
-  grunt.registerTask('default', ['clean', 'assemble:pages']);
+  grunt.registerTask('default', ['clean', 'assemble:posts', 'assemble:pages']);
 
 };
