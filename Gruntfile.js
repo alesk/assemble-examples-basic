@@ -26,7 +26,7 @@ module.exports = function(grunt) {
       },
       posts: {
         options: {
-          ext: '',
+          ext: '.html',
           flatten: false,
           layout: 'src/templates/layouts/post.hbs'
         },
