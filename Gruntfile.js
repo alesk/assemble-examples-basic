@@ -19,8 +19,19 @@ module.exports = function(grunt) {
         flatten: true,
         assets: 'dist/assets',
         layout: 'src/templates/layouts/default.hbs',
-        partials: 'src/templates/partials/*.hbs',
+        partials: [
+          'src/templates/partials/*.hbs'
+        ],
         data: 'src/data/*.{json,yml}'
+      },
+      posts: {
+        options: {
+          flatten: false,
+          layout: 'src/templates/layouts/post.hbs'
+        },
+        files: {
+          'dist/': ['src/posts/*.md']
+        }
       },
       pages: {
         files: {
@@ -44,6 +55,6 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-clean');
 
   // Default task to be run.
-  grunt.registerTask('default', ['clean', 'assemble']);
+  grunt.registerTask('default', ['clean', 'assemble:pages']);
 
 };
